@@ -7,7 +7,7 @@
         body { font-family: Arial, sans-serif; line-height: 1.6; margin: 20px; }
         label { display: block; margin: 10px 0 5px; font-weight: bold; }
         textarea, input { width: 100%; padding: 8px; margin-bottom: 15px; }
-        button { padding: 10px 20px; cursor: pointer; }
+        button { padding: 10px 20px; cursor: pointer; margin-right: 10px; }
         #output { white-space: pre-wrap; background: #f9f9f9; padding: 10px; border: 1px solid #ccc; }
     </style>
 </head>
@@ -67,6 +67,7 @@
     <h2>Gegenereerde tekst:</h2>
     <textarea id="output" rows="20" readonly></textarea>
     <button onclick="copyToClipboard()">Kopieer naar klembord</button>
+    <button onclick="mailHenoch()">Mail Henoch</button>
 
     <script>
         function generateContent() {
@@ -140,7 +141,7 @@ BELANGRIJKSTE DOEL VAN DE CONTENT:
             document.execCommand("copy");
             alert("Tekst gekopieerd naar klembord!");
         }
-        
+
         function mailHenoch() {
             const klantNaam = document.getElementById("naam-klant").value || "onbekend";
             const output = document.getElementById("output").value;
