@@ -140,6 +140,13 @@ BELANGRIJKSTE DOEL VAN DE CONTENT:
             document.execCommand("copy");
             alert("Tekst gekopieerd naar klembord!");
         }
+        
+        function mailHenoch() {
+            const klantNaam = document.getElementById("naam-klant").value || "onbekend";
+            const output = document.getElementById("output").value;
+            const mailtoLink = `mailto:henoch@warempel.media?subject=CustomGPT-prompt%20voor%20${encodeURIComponent(klantNaam)}&body=${encodeURIComponent(output)}`;
+            window.location.href = mailtoLink;
+        }
     </script>
 </body>
 </html>
