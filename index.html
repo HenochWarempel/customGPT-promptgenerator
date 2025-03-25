@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <title>CustomGPT-generator</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 20px; }
+        label { display: block; margin: 10px 0 5px; font-weight: bold; }
+        textarea, input { width: 100%; padding: 8px; margin-bottom: 15px; }
+        button { padding: 10px 20px; cursor: pointer; }
+        #output { white-space: pre-wrap; background: #f9f9f9; padding: 10px; border: 1px solid #ccc; }
+    </style>
+</head>
+<body>
+    <h1>CustomGPT-promptgenerator</h1>
+
+    <!-- Formulier -->
+    <form id="contentForm">
+        <label>Naam van je klant:</label>
+        <input type="text" id="naam-klant">
+
+        <label>Website van je klant:</label>
+        <input type="text" id="website">
+
+        <label>Jouw contactpersoon:</label>
+        <input type="text" id="contactpersoon">
+
+        <label>Belangrijkste doelgroepen:</label>
+        <textarea id="doelgroepen"></textarea>
+
+        <label>Redenen voor samenwerking:</label>
+        <textarea id="redenen-samenwerking"></textarea>
+
+        <label>Bezwaren tegen samenwerking:</label>
+        <textarea id="bezwaren"></textarea>
+
+        <label>Pijnpunten van de doelgroep:</label>
+        <textarea id="pijnpunten"></textarea>
+
+        <label>Hoe los je deze pijnpunten op:</label>
+        <textarea id="oplossing"></textarea>
+
+        <label>Unieke kenmerken (USP's):</label>
+        <textarea id="onderscheidend-vermogen"></textarea>
+
+        <label>Grootste concurrenten:</label>
+        <textarea id="concurrenten"></textarea>
+
+        <label>Tone of voice:</label>
+        <textarea id="tone-of-voice"></textarea>
+
+        <label>Belangrijkste pijlers:</label>
+        <textarea id="pijlers"></textarea>
+
+        <label>Gewenste of te vermijden woorden/zinnen:</label>
+        <textarea id="taalgebruik"></textarea>
+
+        <label>Voorbeeldtekst:</label>
+        <textarea id="voorbeeld-tekst"></textarea>
+
+        <label>Contentdoelen:</label>
+        <textarea id="contentdoelen"></textarea>
+
+        <button type="button" onclick="generateContent()">Genereer content</button>
+    </form>
+
+    <h2>Gegenereerde tekst:</h2>
+    <textarea id="output" rows="20" readonly></textarea>
+    <button onclick="copyToClipboard()">Kopieer naar klembord</button>
+
+    <script>
+        function generateContent() {
+            const labels = [
+                "naam-klant", "website", "contactpersoon", "doelgroepen", "redenen-samenwerking", "bezwaren", 
+                "pijnpunten", "oplossing", "onderscheidend-vermogen", "concurrenten", "tone-of-voice", 
+                "pijlers", "taalgebruik", "voorbeeld-tekst", "contentdoelen"
+            ];
+
+            const data = {};
+            labels.forEach(label => {
+                data[label] = document.getElementById(label).value || `[${label}]`;
+            });
+
+            const template = `Maak een semantische analyse en fungeer als een ervaren contentspecialist en SEO-expert die schrijft voor ${data["naam-klant"]}
+
+Je belangrijkste taak is het creëren van blogs, interviews, artikelen, nieuwsberichten en socialmediaposts die perfect aansluiten bij de doelgroep.
+
+DIT ZIJN DE BELANGRIJKSTE DOELGROEPEN VOOR ${data["naam-klant"]}:
+- ${data["doelgroepen"]}
+
+BELANGRIJKSTE REDENEN VOOR DE DOELGROEP OM EEN SAMENWERKING MET ${data["naam-klant"]} AAN TE GAAN:
+- ${data["redenen-samenwerking"]}
+
+BEZWAREN VOOR DE DOELGROEP OM GÉÉN SAMENWERKING MET ${data["naam-klant"]} AAN TE GAAN:
+- ${data["bezwaren"]}
+
+DE DOELGROEP HEEFT DE VOLGENDE PIJNPUNTEN OF PROBLEMEN, WAAR JE OP INSPEELT IN JE CONTENT:
+- ${data["pijnpunten"]}
+
+ZO HELPT ${data["naam-klant"]} DEZE PIJNPUNTEN OP TE LOSSEN:
+- ${data["oplossing"]}
+
+HOUD REKENING MET DE VOLGENDE KENMERKEN VAN ${data["naam-klant"]}:
+* USP's:
+- ${data["onderscheidend-vermogen"]}
+
+* Concurrenten:
+- ${data["concurrenten"]}
+
+* Contentspecificaties:
+- Bronnen:
+Haal zo veel mogelijk feitelijke informatie van ${data["website"]}
+
+* Gewenste CTA:
+- Contact opnemen
+
+JE SCHRIJFT IN DE VOLGENDE TONE OF VOICE:
+- ${data["tone-of-voice"]}
+
+BELANGRIJKSTE PIJLERS WAAROP ${data["naam-klant"]} ZICHTBAAR WIL ZIJN:
+- ${data["pijlers"]}
+
+GEWENSTE OF TE VERMIJDEN WOORDEN/ZINNEN:
+- ${data["taalgebruik"]}
+
+VOORBEELDTEKST DIE TYPISCH DE TONE OF VOICE EN SCHRIJFSTIJL VAN ${data["naam-klant"]} BEVAT:
+"""
+${data["voorbeeld-tekst"]}
+"""
+
+BELANGRIJKSTE DOEL VAN DE CONTENT:
+- ${data["contentdoelen"]}`;
+
+            document.getElementById("output").value = template;
+        }
+
+        function copyToClipboard() {
+            const output = document.getElementById("output");
+            output.select();
+            document.execCommand("copy");
+            alert("Tekst gekopieerd naar klembord!");
+        }
+    </script>
+</body>
+</html>
