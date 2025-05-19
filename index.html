@@ -166,7 +166,7 @@ function mailHenoch() {
     
     // Open mail met instructie om te plakken
     const subject = `CustomGPT-prompt voor ${encodeURIComponent(klantNaam)}`;
-    const body = `Hoi Henoch,%0D%0A%0D%0AHierbij de gegenereerde prompt voor ${klantNaam}. De volledige tekst is gekopieerd naar je klembord, dus je kunt deze hieronder plakken.%0D%0A%0D%0AGroet,%0D%0A[Je naam]`;
+const body = `Hoi Henoch,%0D%0A%0D%0AHierbij de gegenereerde prompt voor ${klantNaam}.%0D%0A%0D%0A[[[[[Haal deze zin weg en plaats hiervoor de tekst die is gekopieerd naar je klembord (Control-V).]]]]]%0D%0A%0D%0AGroet,%0D%0A[Je naam]`;
     const mailtoLink = `mailto:henoch@warempel.media?subject=${subject}&body=${body}`;
     
     window.location.href = mailtoLink;
