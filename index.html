@@ -156,12 +156,23 @@ ZORG DAT ALLE CONTENT:
             alert("Tekst gekopieerd naar klembord!");
         }
 
-        function mailHenoch() {
-            const klantNaam = document.getElementById("naam-klant").value || "onbekend";
-            const output = document.getElementById("output").value;
-            const mailtoLink = `mailto:henoch@warempel.media?subject=CustomGPT-prompt%20voor%20${encodeURIComponent(klantNaam)}&body=${encodeURIComponent(output)}`;
-            window.location.href = mailtoLink;
-        }
+function mailHenoch() {
+    const klantNaam = document.getElementById("naam-klant").value || "onbekend";
+    const output = document.getElementById("output");
+    
+    // Selecteer en kopieer de tekst naar het klembord
+    output.select();
+    document.execCommand("copy");
+    
+    // Open mail met instructie om te plakken
+    const subject = `CustomGPT-prompt voor ${encodeURIComponent(klantNaam)}`;
+    const body = `Hoi Henoch,%0D%0A%0D%0AHierbij de gegenereerde prompt voor ${klantNaam}. De volledige tekst is gekopieerd naar je klembord, dus je kunt deze hieronder plakken.%0D%0A%0D%0AGroet,%0D%0A[Je naam]`;
+    const mailtoLink = `mailto:henoch@warempel.media?subject=${subject}&body=${body}`;
+    
+    window.location.href = mailtoLink;
+    
+    alert("De tekst is gekopieerd naar je klembord. Je kunt hem zo in de e-mail plakken.");
+}
     </script>
 </body>
 </html>
